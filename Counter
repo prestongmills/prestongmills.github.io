@@ -1,0 +1,75 @@
+<html>
+  <head>
+    <style>
+      body {
+        background-image: url('https://www.hipstersofthecoast.com/wp-content/uploads/2017/10/Pacifism-large.jpg');
+        background-size: cover;
+      }
+
+      .counter {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        flex-direction: column;
+      }
+
+      .life-counter {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 48px;
+        margin: 20px;
+      }
+
+      button {
+        padding: 10px 20px;
+        font-size: 24px;
+        margin: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="counter">
+      <div class="life-counter">
+        <button id="player1-minus">-</button>
+        <div id="player1-life">20</div>
+        <button id="player1-plus">+</button>
+      </div>
+      <div class="life-counter">
+        <button id="player2-minus">-</button>
+        <div id="player2-life">20</div>
+        <button id="player2-plus">+</button>
+      </div>
+      <div class="life-counter">
+        <button id="player3-minus">-</button>
+        <div id="player3-life">20</div>
+        <button id="player3-plus">+</button>
+      </div>
+    </div>
+    <script>
+      function updateLife(e) {
+        const target = e.target;
+        const playerLife = target.parentNode.querySelector("div");
+        const currentLife = parseInt(playerLife.textContent);
+        if (target.id.endsWith("minus")) {
+          playerLife.textContent = currentLife - 1;
+        } else if (target.id.endsWith("plus")) {
+          playerLife.textContent = currentLife + 1;
+        }
+      }
+
+      const playerMinusButtons = document.querySelectorAll("[id$='-minus']");
+      playerMinusButtons.forEach(function(btn) {
+        btn.addEventListener("click", updateLife);
+      });
+
+      const playerPlusButtons = document.querySelectorAll("[id$='-plus']");
+      playerPlusButtons.forEach(function(btn) {
+        btn.addEventListener("click", updateLife);
+      });
+    </script>
+  </body>
+</html>
